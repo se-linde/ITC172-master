@@ -1,0 +1,29 @@
+Assignment Two: Calendar of Events
+ Submit Assignment
+Due Jan 18 by 11:59pm  Points 10 Submitting a text entry box, a website url, or a file upload
+Create a web page with a Calendar control.
+
+Use a two dimensional array with that contains dates and description of events on that date. It should contain at least 5 or 6 different events. At least one of the dates should have more than one event. (The date will need to be entered as a string and converted to a date for comparison to the date on the calendar.) When a date on the calendar is clicked, it should return a list of the events for that date.
+
+Apply some CSS to format the page: Have a heading one (h1)  element  change its color. Change the color of the event text. Format the Calendar (it renders into a table). You can add any other formatting you wish.
+
+Here is a link to the MSDN documentation of the calendar control, though it is a bit overwhelming. https://msdn.microsoft.com/en-us/library/system.windows.controls.calendar(v=vs.110).aspx (Links to an external site.)
+
+Here is a little thing from C# corner on the Calendar.
+http://www.c-sharpcorner.com/uploadfile/gowth/calendar-control-in-C-Sharp/ (Links to an external site.)
+
+Rubric
+Assignment two Rubric
+Assignment two Rubric
+Criteria	Ratings	Pts
+Calendar control
+2.0 pts
+Two dimensional array
+2.0 pts
+Button and click event
+2.0 pts
+Display events
+2.0 pts
+CSS
+2.0 pts
+Total Points: 10.0
