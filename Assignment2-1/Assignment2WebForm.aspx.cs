@@ -49,17 +49,17 @@ public partial class _Default : System.Web.UI.Page
         // List of holidays: http://www.holidayinsights.com/moreholidays/
 
         shindig[0, 0] = "Arbor Day"; // 4/28/2017
-        shindig[0, 1] = "0.99";  // "0.99" 
+        shindig[0, 1] = "4/28/2017";  // "0.99" 
         shindig[1, 0] = "National Fritters Day"; // 12/02/2017
-        shindig[1, 1] = "1.99"; // "1.99"
+        shindig[1, 1] = "12/2/2017"; // "1.99"
         shindig[2, 0] = "Pi Day"; // 03/14/2017
-        shindig[2, 1] = "2.25"; // "2.25"
+        shindig[2, 1] = "3/14/2017"; // "2.25"
         shindig[3, 0] = "Waffle Day"; //  03/25/2017
-        shindig[3, 1] = "0.99"; // "0.99"
+        shindig[3, 1] = "3/25/2017"; // "0.99"
         shindig[4, 0] = "May Day"; // 05/01/2017
-        shindig[4, 1] = "1.99"; // "1.99"
+        shindig[4, 1] = "5/1/2017"; // "1.99"
         shindig[5, 0] = "Loyalty Day"; // 05/01/2017
-        shindig[5, 1] = "1.99"; // "1.99"
+        shindig[5, 1] = "5/1/2017"; // "1.99"
 
         // ProduceCheckBoxList.DataSource = product;
         // ProduceCheckBoxList.DataBind();      
@@ -129,20 +129,32 @@ public partial class _Default : System.Web.UI.Page
     {
         // Can't assign anything in a loop without initializing it outside the loop.
         int counter = 0;
-        double total = 0;
+        // double total = 0;
+      
         foreach (ListItem item in ProduceCheckBoxList.Items)
-        {
-            string productName = shindig[counter, 0];
+        {  // I want to list the dates besides the items when the button is pressed. 
+            // This currently doesn't happen. 
+
+            // string productName = shindig[counter, 0];
+            DateTime productName = DateTime.Parse(shindig[counter, 0]); 
+
             if (item.Selected)
             {
                 if (item.Text.Equals(productName))
                 {
-                    total += double.Parse(shindig[counter, 1]);
+                    // total += double.Parse(shindig[counter, 1]);                 
+                    // DateTime date = DateTime.Parse(shindig[counter, 1]);
+                
+                    ProduceCheckBoxList.Items.Add(item);
+                    
+
                 }
 
             }
             counter++;
         }
-        Label2.Text = "Your Total Is: " + total.ToString("C");
+        // Label2.Text = "Your Total Is: " date2;
+        
     }
+
 }
