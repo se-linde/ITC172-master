@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
-    // List of holidays: http://www.holidayinsights.com/moreholidays/
     // This is different than in Java.
     // Declare it here, class level. 
     // string[,] product = new string[5, 2]; // 5 rows - horiz, 2 columns - vert. 
@@ -45,18 +44,22 @@ public partial class _Default : System.Web.UI.Page
     {
         // Here's where the actual array is, inside a method. 
         // Don't use single quotes. 
-        shindig[0, 0] = "Arbor Day"; // Lettuce make an array! 
-        shindig[0, 1] = "0.99";
-        shindig[1, 0] = "Old Stuff Day";
-        shindig[1, 1] = "1.99";
-        shindig[2, 0] = "If Pets Had Thumbs Day";
-        shindig[2, 1] = "2.25";
-        shindig[3, 0] = "Bat Appreciation Day";
-        shindig[3, 1] = "0.99";
-        shindig[4, 0] = "May Day";
-        shindig[4, 1] = "1.99";
-        shindig[5, 0] = "Loyalty Day";
-        shindig[5, 1] = "1.99";
+
+        // A list of holidays by name and date. 
+        // List of holidays: http://www.holidayinsights.com/moreholidays/
+
+        shindig[0, 0] = "Arbor Day"; // 4/28/2017
+        shindig[0, 1] = "0.99";  // "0.99" 
+        shindig[1, 0] = "National Fritters Day"; // 12/02/2017
+        shindig[1, 1] = "1.99"; // "1.99"
+        shindig[2, 0] = "Pi Day"; // 03/14/2017
+        shindig[2, 1] = "2.25"; // "2.25"
+        shindig[3, 0] = "Waffle Day"; //  03/25/2017
+        shindig[3, 1] = "0.99"; // "0.99"
+        shindig[4, 0] = "May Day"; // 05/01/2017
+        shindig[4, 1] = "1.99"; // "1.99"
+        shindig[5, 0] = "Loyalty Day"; // 05/01/2017
+        shindig[5, 1] = "1.99"; // "1.99"
 
         // ProduceCheckBoxList.DataSource = product;
         // ProduceCheckBoxList.DataBind();      
