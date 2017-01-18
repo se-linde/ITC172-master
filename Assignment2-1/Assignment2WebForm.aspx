@@ -11,12 +11,10 @@
     <div>
     
         <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged"></asp:Calendar>
-        <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+        <asp:Label ID="ShindigDisplay" runat="server" Text=""></asp:Label>
+        <p><asp:Label ID="ShindigNo" runat="server" Text=""></asp:Label></p>
 
-        <asp:CheckBoxList ID="ProduceCheckBoxList" runat="server"></asp:CheckBoxList>
-        <asp:Button ID="TotalButton" runat="server" Text="Get Total" OnClick="TotalButton_Click" />
-        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-
+        
     </div>
     </form>
 </body>
