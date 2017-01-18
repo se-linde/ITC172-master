@@ -1,0 +1,29 @@
+﻿
+body {
+}
+
+table tr th{
+color:cadetblue;
+font-weight:bold; 
+border:solid 3px;
+border-color:seagreen; 
+
+}
+
+h1 {
+    color: lightcoral;
+}
+
+p {
+    color: rebeccapurple; 
+    text-align: left; 
+    font-style:italic;
+    font-size: larger; 
+}
+
+.result
+{
+    color:darkorchid;
+}
+
+

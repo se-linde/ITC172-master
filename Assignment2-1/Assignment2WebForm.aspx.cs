@@ -39,7 +39,7 @@ public partial class _Default : System.Web.UI.Page
     protected void Calendar1_SelectionChanged(object sender, EventArgs e)
     {
         ShindigDisplay.Text = Calendar1.SelectedDate.ToShortDateString();
-        ShindigNo.Text = "There is no shindig on this date."; 
+        // ShindigNo.Text = "There is no shindig on this date."; 
 
         GetShindig();
     }
@@ -52,10 +52,10 @@ public partial class _Default : System.Web.UI.Page
             {
                 ShindigDisplay.Text += " " + shindig[i, 0];
             }
-            else
+            /* else
             {
                 ShindigNo.Text += ""; 
-            }
+            } */ 
 
         }
 
