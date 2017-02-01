@@ -4,21 +4,30 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data; 
 
 public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        FillGrid(); 
+
     }
 
-    protected void FillGrid()
+    protected void LoginButton_Click(object sender, EventArgs e)
     {
-        CAService cas = new CAService();
-        DataTable table = cas.GetGrantTypes();
-        GridView1.DataSource = table;
-        GridView1.DataBind(); 
+
+        LoginClass lc = new LoginClass(UserTextBox.Text, PWTextBox.Text);
+        int key = lc.ValidateLogin(); 
+
+        if (key != 0)
+        {
+            // ResultLabel.Text = "Welcome! Correct login!";
+            Session["userkey"] = key;
+            Response.Redirect("GrantRequest.aspx");
+        }
+        else
+        {
+            ResultLabel.Text = "Invalid login, wrong username or password!"; 
+        }
 
     }
 }
