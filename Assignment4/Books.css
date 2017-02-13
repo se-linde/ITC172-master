@@ -1,0 +1,31 @@
+﻿body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-style:normal;
+    color:darkred;
+    background-color:bisque;
+}
+
+table tr th{
+color:cadetblue;
+font-weight:bold; 
+border:solid 3px;
+border-color:seagreen; 
+
+}
+
+h1 {
+    color: darkslateblue;
+    font-style:italic; 
+}
+
+p {
+    color: rebeccapurple; 
+    text-align: left; 
+    font-style:italic;
+    font-size: larger; 
+}
+
+.result
+{
+    color:darkorchid;
+}
