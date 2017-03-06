@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:1976/CAService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="PersonLite">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Apartment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HomePhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Street" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WorkPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Zipcode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersonLite" nillable="true" type="tns:PersonLite" />
+  <xs:complexType name="GrantRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GrantRequestAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="GrantRequestDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="GrantRequestExplanation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GrantRequestKey" type="xs:int" />
+      <xs:element minOccurs="0" name="GrantReviews" nillable="true" type="tns:ArrayOfGrantReview" />
+      <xs:element minOccurs="0" name="GrantType" nillable="true" type="tns:GrantType" />
+      <xs:element minOccurs="0" name="GrantTypeKey" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Person" nillable="true" type="tns:Person" />
+      <xs:element minOccurs="0" name="PersonKey" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GrantRequest" nillable="true" type="tns:GrantRequest" />
+  <xs:complexType name="ArrayOfGrantReview">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GrantReview" nillable="true" type="tns:GrantReview" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGrantReview" nillable="true" type="tns:ArrayOfGrantReview" />
+  <xs:complexType name="GrantReview">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Employee" nillable="true" type="tns:Employee" />
+      <xs:element minOccurs="0" name="EmployeeKey" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="GrantAllocationAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="GrantRequest" nillable="true" type="tns:GrantRequest" />
+      <xs:element minOccurs="0" name="GrantRequestKey" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="GrantRequestStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GrantReviewComments" nillable="true" type="tns:ArrayOfGrantReviewComment" />
+      <xs:element minOccurs="0" name="GrantReviewDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="GrantReviewKey" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GrantReview" nillable="true" type="tns:GrantReview" />
+  <xs:complexType name="Employee">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmployeeAnnualSalary" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="EmployeeHireDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EmployeeKey" type="xs:int" />
+      <xs:element minOccurs="0" name="GrantReviewComments" nillable="true" type="tns:ArrayOfGrantReviewComment" />
+      <xs:element minOccurs="0" name="GrantReviews" nillable="true" type="tns:ArrayOfGrantReview" />
+      <xs:element minOccurs="0" name="Person" nillable="true" type="tns:Person" />
+      <xs:element minOccurs="0" name="PersonKey" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Positions" nillable="true" type="tns:ArrayOfPosition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Employee" nillable="true" type="tns:Employee" />
+  <xs:complexType name="ArrayOfGrantReviewComment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GrantReviewComment" nillable="true" type="tns:GrantReviewComment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGrantReviewComment" nillable="true" type="tns:ArrayOfGrantReviewComment" />
+  <xs:complexType name="GrantReviewComment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Employee" nillable="true" type="tns:Employee" />
+      <xs:element minOccurs="0" name="EmployeeKey" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="GrantReview" nillable="true" type="tns:GrantReview" />
+      <xs:element minOccurs="0" name="GrantReviewCommentDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="GrantReviewCommentKey" type="xs:int" />
+      <xs:element minOccurs="0" name="GrantReviewKey" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="GrantReviewNote" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GrantReviewComment" nillable="true" type="tns:GrantReviewComment" />
+  <xs:complexType name="Person">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Contacts" nillable="true" type="tns:ArrayOfContact" />
+      <xs:element minOccurs="0" name="Donations" nillable="true" type="tns:ArrayOfDonation" />
+      <xs:element minOccurs="0" name="Employees" nillable="true" type="tns:ArrayOfEmployee" />
+      <xs:element minOccurs="0" name="GrantRequests" nillable="true" type="tns:ArrayOfGrantRequest" />
+      <xs:element minOccurs="0" name="LoginHistoryTables" nillable="true" type="tns:ArrayOfLoginHistoryTable" />
+      <xs:element minOccurs="0" name="PersonAddresses" nillable="true" type="tns:ArrayOfPersonAddress" />
+      <xs:element minOccurs="0" name="PersonEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PersonEntryDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PersonFirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PersonKey" type="xs:int" />
+      <xs:element minOccurs="0" name="PersonLastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PersonPassWord" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="PersonPassWordSeed" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Person" nillable="true" type="tns:Person" />
+  <xs:complexType name="ArrayOfContact">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contact" nillable="true" type="tns:Contact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContact" nillable="true" type="tns:ArrayOfContact" />
+  <xs:complexType name="Contact">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ContactKey" type="xs:int" />
+      <xs:element minOccurs="0" name="ContactNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContactType" nillable="true" type="tns:ContactType" />
+      <xs:element minOccurs="0" name="ContactTypeKey" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Person" nillable="true" type="tns:Person" />
+      <xs:element minOccurs="0" name="PersonKey" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contact" nillable="true" type="tns:Contact" />
+  <xs:complexType name="ContactType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ContactTypeKey" type="xs:int" />
+      <xs:element minOccurs="0" name="ContactTypeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Contacts" nillable="true" type="tns:ArrayOfContact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ContactType" nillable="true" type="tns:ContactType" />
+  <xs:complexType name="ArrayOfDonation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Donation" nillable="true" type="tns:Donation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDonation" nillable="true" type="tns:ArrayOfDonation" />
+  <xs:complexType name="Donation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DonationAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DonationConfirmation" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="DonationDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DonationKey" type="xs:int" />
+      <xs:element minOccurs="0" name="Person" nillable="true" type="tns:Person" />
+      <xs:element minOccurs="0" name="PersonKey" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Donation" nillable="true" type="tns:Donation" />
+  <xs:complexType name="ArrayOfEmployee">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Employee" nillable="true" type="tns:Employee" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEmployee" nillable="true" type="tns:ArrayOfEmployee" />
+  <xs:complexType name="ArrayOfGrantRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GrantRequest" nillable="true" type="tns:GrantRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGrantRequest" nillable="true" type="tns:ArrayOfGrantRequest" />
+  <xs:complexType name="ArrayOfLoginHistoryTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LoginHistoryTable" nillable="true" type="tns:LoginHistoryTable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLoginHistoryTable" nillable="true" type="tns:ArrayOfLoginHistoryTable" />
+  <xs:complexType name="LoginHistoryTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LoginHistoryKey" type="xs:int" />
+      <xs:element minOccurs="0" name="LoginTimeStamp" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Person" nillable="true" type="tns:Person" />
+      <xs:element minOccurs="0" name="PersonKey" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginHistoryTable" nillable="true" type="tns:LoginHistoryTable" />
+  <xs:complexType name="ArrayOfPersonAddress">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonAddress" nillable="true" type="tns:PersonAddress" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPersonAddress" nillable="true" type="tns:ArrayOfPersonAddress" />
+  <xs:complexType name="PersonAddress">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Person" nillable="true" type="tns:Person" />
+      <xs:element minOccurs="0" name="PersonAddressApt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PersonAddressCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PersonAddressKey" type="xs:int" />
+      <xs:element minOccurs="0" name="PersonAddressState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PersonAddressStreet" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PersonAddressZip" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PersonKey" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersonAddress" nillable="true" type="tns:PersonAddress" />
+  <xs:complexType name="ArrayOfPosition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Position" nillable="true" type="tns:Position" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPosition" nillable="true" type="tns:ArrayOfPosition" />
+  <xs:complexType name="Position">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Employees" nillable="true" type="tns:ArrayOfEmployee" />
+      <xs:element minOccurs="0" name="PositionDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PositionKey" type="xs:int" />
+      <xs:element minOccurs="0" name="PositionName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Position" nillable="true" type="tns:Position" />
+  <xs:complexType name="GrantType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GrantRequests" nillable="true" type="tns:ArrayOfGrantRequest" />
+      <xs:element minOccurs="0" name="GrantTypeDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GrantTypeKey" type="xs:int" />
+      <xs:element minOccurs="0" name="GrantTypeLifetimeMaximum" type="xs:decimal" />
+      <xs:element minOccurs="0" name="GrantTypeMaximum" type="xs:decimal" />
+      <xs:element minOccurs="0" name="GrantTypeName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GrantType" nillable="true" type="tns:GrantType" />
+  <xs:complexType name="ArrayOfGrantType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GrantType" nillable="true" type="tns:GrantType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGrantType" nillable="true" type="tns:ArrayOfGrantType" />
+  <xs:complexType name="ArrayOfGrantInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GrantInfo" nillable="true" type="tns:GrantInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGrantInfo" nillable="true" type="tns:ArrayOfGrantInfo" />
+  <xs:complexType name="GrantInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Explanation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GrantTypeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GrantInfo" nillable="true" type="tns:GrantInfo" />
+</xs:schema>

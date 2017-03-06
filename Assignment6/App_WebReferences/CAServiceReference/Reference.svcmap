@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c3d30aa0-8254-41c3-9a60-5f137cdd9a83" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:1976/CAService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CAService.disco" MetadataType="Disco" ID="1535cc00-83c7-4534-9ab2-2730784c635c" SourceId="1" SourceUrl="http://localhost:1976/CAService.svc?disco" />
+    <MetadataFile FileName="CAService.xsd" MetadataType="Schema" ID="e8535d2d-a76f-40d4-9ea1-1d1e017127db" SourceId="1" SourceUrl="http://localhost:1976/CAService.svc?xsd=xsd0" />
+    <MetadataFile FileName="CAService1.xsd" MetadataType="Schema" ID="3d9fc6d6-428b-4dc5-ab45-eaac59541cfd" SourceId="1" SourceUrl="http://localhost:1976/CAService.svc?xsd=xsd2" />
+    <MetadataFile FileName="CAService2.xsd" MetadataType="Schema" ID="560ce839-040b-4d0f-925f-346d2f27769a" SourceId="1" SourceUrl="http://localhost:1976/CAService.svc?xsd=xsd1" />
+    <MetadataFile FileName="CAService.wsdl" MetadataType="Wsdl" ID="b46f9c2a-c409-4e52-9489-d85730886172" SourceId="1" SourceUrl="http://localhost:1976/CAService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

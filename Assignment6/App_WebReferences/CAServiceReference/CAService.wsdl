@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CAService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:1976/CAService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:1976/CAService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:1976/CAService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICAService_PersonLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:PersonLogin" />
+  </wsdl:message>
+  <wsdl:message name="ICAService_PersonLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PersonLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICAService_RegisterPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterPerson" />
+  </wsdl:message>
+  <wsdl:message name="ICAService_RegisterPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICAService_ApplyForGrant_InputMessage">
+    <wsdl:part name="parameters" element="tns:ApplyForGrant" />
+  </wsdl:message>
+  <wsdl:message name="ICAService_ApplyForGrant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ApplyForGrantResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICAService_GetGrantTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGrantTypes" />
+  </wsdl:message>
+  <wsdl:message name="ICAService_GetGrantTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGrantTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICAService_GetGrantsByPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGrantsByPerson" />
+  </wsdl:message>
+  <wsdl:message name="ICAService_GetGrantsByPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGrantsByPersonResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICAService">
+    <wsdl:operation name="PersonLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICAService/PersonLogin" message="tns:ICAService_PersonLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICAService/PersonLoginResponse" message="tns:ICAService_PersonLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICAService/RegisterPerson" message="tns:ICAService_RegisterPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICAService/RegisterPersonResponse" message="tns:ICAService_RegisterPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ApplyForGrant">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICAService/ApplyForGrant" message="tns:ICAService_ApplyForGrant_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICAService/ApplyForGrantResponse" message="tns:ICAService_ApplyForGrant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGrantTypes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICAService/GetGrantTypes" message="tns:ICAService_GetGrantTypes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICAService/GetGrantTypesResponse" message="tns:ICAService_GetGrantTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGrantsByPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICAService/GetGrantsByPerson" message="tns:ICAService_GetGrantsByPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICAService/GetGrantsByPersonResponse" message="tns:ICAService_GetGrantsByPerson_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICAService" type="tns:ICAService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PersonLogin">
+      <soap:operation soapAction="http://tempuri.org/ICAService/PersonLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterPerson">
+      <soap:operation soapAction="http://tempuri.org/ICAService/RegisterPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplyForGrant">
+      <soap:operation soapAction="http://tempuri.org/ICAService/ApplyForGrant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGrantTypes">
+      <soap:operation soapAction="http://tempuri.org/ICAService/GetGrantTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGrantsByPerson">
+      <soap:operation soapAction="http://tempuri.org/ICAService/GetGrantsByPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CAService">
+    <wsdl:port name="BasicHttpBinding_ICAService" binding="tns:BasicHttpBinding_ICAService">
+      <soap:address location="http://localhost:1976/CAService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
