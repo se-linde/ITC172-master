@@ -1,0 +1,978 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Community_AssistModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BusinessRule">
+          <Key>
+            <PropertyRef Name="BusinessRuleKey" />
+          </Key>
+          <Property Name="BusinessRuleKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BusinessRuleText" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactKey" />
+          </Key>
+          <Property Name="ContactKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactNumber" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ContactTypeKey" Type="int" />
+          <Property Name="PersonKey" Type="int" />
+        </EntityType>
+        <EntityType Name="ContactType">
+          <Key>
+            <PropertyRef Name="ContactTypeKey" />
+          </Key>
+          <Property Name="ContactTypeKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactTypeName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Donation">
+          <Key>
+            <PropertyRef Name="DonationKey" />
+          </Key>
+          <Property Name="DonationKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonKey" Type="int" />
+          <Property Name="DonationDate" Type="datetime" Nullable="false" />
+          <Property Name="DonationAmount" Type="money" Nullable="false" />
+          <Property Name="DonationConfirmation" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeKey" />
+          </Key>
+          <Property Name="EmployeeKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonKey" Type="int" />
+          <Property Name="EmployeeHireDate" Type="date" Nullable="false" />
+          <Property Name="EmployeeAnnualSalary" Type="money" />
+        </EntityType>
+        <EntityType Name="EmployeePosition">
+          <Key>
+            <PropertyRef Name="PositionKey" />
+            <PropertyRef Name="EmployeeKey" />
+          </Key>
+          <Property Name="PositionKey" Type="int" Nullable="false" />
+          <Property Name="EmployeeKey" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GrantRequest">
+          <Key>
+            <PropertyRef Name="GrantRequestKey" />
+          </Key>
+          <Property Name="GrantRequestKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GrantRequestDate" Type="datetime" Nullable="false" />
+          <Property Name="PersonKey" Type="int" />
+          <Property Name="GrantTypeKey" Type="int" />
+          <Property Name="GrantRequestExplanation" Type="nvarchar" MaxLength="255" />
+          <Property Name="GrantRequestAmount" Type="money" />
+        </EntityType>
+        <EntityType Name="GrantReview">
+          <Key>
+            <PropertyRef Name="GrantReviewKey" />
+          </Key>
+          <Property Name="GrantReviewKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GrantReviewDate" Type="datetime" Nullable="false" />
+          <Property Name="GrantRequestKey" Type="int" />
+          <Property Name="GrantRequestStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="GrantAllocationAmount" Type="money" />
+          <Property Name="EmployeeKey" Type="int" />
+        </EntityType>
+        <EntityType Name="GrantReviewComment">
+          <Key>
+            <PropertyRef Name="GrantReviewCommentKey" />
+          </Key>
+          <Property Name="GrantReviewCommentKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GrantReviewKey" Type="int" />
+          <Property Name="EmployeeKey" Type="int" />
+          <Property Name="GrantReviewCommentDate" Type="datetime" Nullable="false" />
+          <Property Name="GrantReviewNote" Type="xml" />
+        </EntityType>
+        <EntityType Name="GrantType">
+          <Key>
+            <PropertyRef Name="GrantTypeKey" />
+          </Key>
+          <Property Name="GrantTypeKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GrantTypeName" Type="nvarchar" MaxLength="255" />
+          <Property Name="GrantTypeMaximum" Type="money" Nullable="false" />
+          <Property Name="GrantTypeLifetimeMaximum" Type="money" Nullable="false" />
+          <Property Name="GrantTypeDescription" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="LoginHistoryTable">
+          <Key>
+            <PropertyRef Name="LoginHistoryKey" />
+          </Key>
+          <Property Name="LoginHistoryKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonKey" Type="int" />
+          <Property Name="LoginTimeStamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonKey" />
+          </Key>
+          <Property Name="PersonKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonLastName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PersonFirstName" Type="nvarchar" MaxLength="255" />
+          <Property Name="PersonEmail" Type="nvarchar" MaxLength="255" />
+          <Property Name="PersonPassWord" Type="varbinary" MaxLength="500" />
+          <Property Name="PersonEntryDate" Type="datetime" Nullable="false" />
+          <Property Name="PersonPassWordSeed" Type="int" />
+        </EntityType>
+        <EntityType Name="PersonAddress">
+          <Key>
+            <PropertyRef Name="PersonAddressKey" />
+          </Key>
+          <Property Name="PersonAddressKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonAddressApt" Type="nvarchar" MaxLength="255" />
+          <Property Name="PersonAddressStreet" Type="nvarchar" MaxLength="255" />
+          <Property Name="PersonAddressCity" Type="nvarchar" MaxLength="255" />
+          <Property Name="PersonAddressState" Type="nvarchar" MaxLength="255" />
+          <Property Name="PersonAddressZip" Type="nvarchar" MaxLength="255" />
+          <Property Name="PersonKey" Type="int" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="PositionKey" />
+          </Key>
+          <Property Name="PositionKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PositionName" Type="nvarchar" MaxLength="255" />
+          <Property Name="PositionDescription" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__Contact__Contact__2F10007B">
+          <End Role="ContactType" Type="Self.ContactType" Multiplicity="0..1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactType">
+              <PropertyRef Name="ContactTypeKey" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="ContactTypeKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contact__PersonK__300424B4">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonKey" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="PersonKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Donation__Person__30F848ED">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Donation" Type="Self.Donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonKey" />
+            </Principal>
+            <Dependent Role="Donation">
+              <PropertyRef Name="PersonKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Person__31EC6D26">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonKey" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="PersonKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmployeeP__Emplo__32E0915F">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="EmployeePosition" Type="Self.EmployeePosition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeKey" />
+            </Principal>
+            <Dependent Role="EmployeePosition">
+              <PropertyRef Name="EmployeeKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmployeeP__Posit__33D4B598">
+          <End Role="Position" Type="Self.Position" Multiplicity="1" />
+          <End Role="EmployeePosition" Type="Self.EmployeePosition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="PositionKey" />
+            </Principal>
+            <Dependent Role="EmployeePosition">
+              <PropertyRef Name="PositionKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GrantRequ__Grant__34C8D9D1">
+          <End Role="GrantType" Type="Self.GrantType" Multiplicity="0..1" />
+          <End Role="GrantRequest" Type="Self.GrantRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrantType">
+              <PropertyRef Name="GrantTypeKey" />
+            </Principal>
+            <Dependent Role="GrantRequest">
+              <PropertyRef Name="GrantTypeKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GrantRequ__Perso__35BCFE0A">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="GrantRequest" Type="Self.GrantRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonKey" />
+            </Principal>
+            <Dependent Role="GrantRequest">
+              <PropertyRef Name="PersonKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GrantRevi__Emplo__36B12243">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="GrantReview" Type="Self.GrantReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeKey" />
+            </Principal>
+            <Dependent Role="GrantReview">
+              <PropertyRef Name="EmployeeKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GrantRevi__Emplo__38996AB5">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="GrantReviewComment" Type="Self.GrantReviewComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeKey" />
+            </Principal>
+            <Dependent Role="GrantReviewComment">
+              <PropertyRef Name="EmployeeKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GrantRevi__Grant__37A5467C">
+          <End Role="GrantRequest" Type="Self.GrantRequest" Multiplicity="0..1" />
+          <End Role="GrantReview" Type="Self.GrantReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrantRequest">
+              <PropertyRef Name="GrantRequestKey" />
+            </Principal>
+            <Dependent Role="GrantReview">
+              <PropertyRef Name="GrantRequestKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LoginHist__Perso__3A81B327">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="LoginHistoryTable" Type="Self.LoginHistoryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonKey" />
+            </Principal>
+            <Dependent Role="LoginHistoryTable">
+              <PropertyRef Name="PersonKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PersonAdd__Perso__3B75D760">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="PersonAddress" Type="Self.PersonAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonKey" />
+            </Principal>
+            <Dependent Role="PersonAddress">
+              <PropertyRef Name="PersonKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_GrantReview">
+          <End Role="GrantReview" Type="Self.GrantReview" Multiplicity="0..1" />
+          <End Role="GrantReviewComment" Type="Self.GrantReviewComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrantReview">
+              <PropertyRef Name="GrantReviewKey" />
+            </Principal>
+            <Dependent Role="GrantReviewComment">
+              <PropertyRef Name="GrantReviewKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fx_GetSeed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="fx_HashPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varbinary">
+          <Parameter Name="seed" Type="int" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_AddRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GrantType" Type="int" Mode="In" />
+          <Parameter Name="GrantRequestExplantion" Type="nvarchar" Mode="In" />
+          <Parameter Name="GrantRequestAmount" Type="money" Mode="In" />
+          <Parameter Name="personKey" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_Register" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="lastname" Type="nvarchar" Mode="In" />
+          <Parameter Name="firstname" Type="nvarchar" Mode="In" />
+          <Parameter Name="email" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+          <Parameter Name="ApartmentNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="Street" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="State" Type="nchar" Mode="In" />
+          <Parameter Name="Zipcode" Type="nvarchar" Mode="In" />
+          <Parameter Name="HomePhone" Type="nvarchar" Mode="In" />
+          <Parameter Name="WorkPhone" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="Community_AssistModelStoreContainer">
+          <EntitySet Name="BusinessRule" EntityType="Self.BusinessRule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactType" EntityType="Self.ContactType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Donation" EntityType="Self.Donation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeePosition" EntityType="Self.EmployeePosition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GrantRequest" EntityType="Self.GrantRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GrantReview" EntityType="Self.GrantReview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GrantReviewComment" EntityType="Self.GrantReviewComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GrantType" EntityType="Self.GrantType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginHistoryTable" EntityType="Self.LoginHistoryTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonAddress" EntityType="Self.PersonAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Contact__Contact__2F10007B" Association="Self.FK__Contact__Contact__2F10007B">
+            <End Role="ContactType" EntitySet="ContactType" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contact__PersonK__300424B4" Association="Self.FK__Contact__PersonK__300424B4">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Donation__Person__30F848ED" Association="Self.FK__Donation__Person__30F848ED">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Donation" EntitySet="Donation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Person__31EC6D26" Association="Self.FK__Employee__Person__31EC6D26">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmployeeP__Emplo__32E0915F" Association="Self.FK__EmployeeP__Emplo__32E0915F">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="EmployeePosition" EntitySet="EmployeePosition" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmployeeP__Posit__33D4B598" Association="Self.FK__EmployeeP__Posit__33D4B598">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="EmployeePosition" EntitySet="EmployeePosition" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GrantRequ__Grant__34C8D9D1" Association="Self.FK__GrantRequ__Grant__34C8D9D1">
+            <End Role="GrantType" EntitySet="GrantType" />
+            <End Role="GrantRequest" EntitySet="GrantRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GrantRequ__Perso__35BCFE0A" Association="Self.FK__GrantRequ__Perso__35BCFE0A">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="GrantRequest" EntitySet="GrantRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GrantRevi__Emplo__36B12243" Association="Self.FK__GrantRevi__Emplo__36B12243">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="GrantReview" EntitySet="GrantReview" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GrantRevi__Emplo__38996AB5" Association="Self.FK__GrantRevi__Emplo__38996AB5">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="GrantReviewComment" EntitySet="GrantReviewComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GrantRevi__Grant__37A5467C" Association="Self.FK__GrantRevi__Grant__37A5467C">
+            <End Role="GrantRequest" EntitySet="GrantRequest" />
+            <End Role="GrantReview" EntitySet="GrantReview" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LoginHist__Perso__3A81B327" Association="Self.FK__LoginHist__Perso__3A81B327">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="LoginHistoryTable" EntitySet="LoginHistoryTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PersonAdd__Perso__3B75D760" Association="Self.FK__PersonAdd__Perso__3B75D760">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="PersonAddress" EntitySet="PersonAddress" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_GrantReview" Association="Self.Fk_GrantReview">
+            <End Role="GrantReview" EntitySet="GrantReview" />
+            <End Role="GrantReviewComment" EntitySet="GrantReviewComment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Community_AssistModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BusinessRule">
+          <Key>
+            <PropertyRef Name="BusinessRuleKey" />
+          </Key>
+          <Property Name="BusinessRuleKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BusinessRuleText" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactKey" />
+          </Key>
+          <Property Name="ContactKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContactTypeKey" Type="Int32" />
+          <Property Name="PersonKey" Type="Int32" />
+          <NavigationProperty Name="ContactType" Relationship="Self.FK__Contact__Contact__2F10007B" FromRole="Contact" ToRole="ContactType" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__Contact__PersonK__300424B4" FromRole="Contact" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="ContactType">
+          <Key>
+            <PropertyRef Name="ContactTypeKey" />
+          </Key>
+          <Property Name="ContactTypeKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Contacts" Relationship="Self.FK__Contact__Contact__2F10007B" FromRole="ContactType" ToRole="Contact" />
+        </EntityType>
+        <EntityType Name="Donation">
+          <Key>
+            <PropertyRef Name="DonationKey" />
+          </Key>
+          <Property Name="DonationKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonKey" Type="Int32" />
+          <Property Name="DonationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DonationAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="DonationConfirmation" Type="Guid" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__Donation__Person__30F848ED" FromRole="Donation" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeKey" />
+          </Key>
+          <Property Name="EmployeeKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonKey" Type="Int32" />
+          <Property Name="EmployeeHireDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EmployeeAnnualSalary" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__Employee__Person__31EC6D26" FromRole="Employee" ToRole="Person" />
+          <NavigationProperty Name="GrantReviews" Relationship="Self.FK__GrantRevi__Emplo__36B12243" FromRole="Employee" ToRole="GrantReview" />
+          <NavigationProperty Name="GrantReviewComments" Relationship="Self.FK__GrantRevi__Emplo__38996AB5" FromRole="Employee" ToRole="GrantReviewComment" />
+          <NavigationProperty Name="Positions" Relationship="Self.EmployeePosition" FromRole="Employee" ToRole="Position" />
+        </EntityType>
+        <EntityType Name="GrantRequest">
+          <Key>
+            <PropertyRef Name="GrantRequestKey" />
+          </Key>
+          <Property Name="GrantRequestKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GrantRequestDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PersonKey" Type="Int32" />
+          <Property Name="GrantTypeKey" Type="Int32" />
+          <Property Name="GrantRequestExplanation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GrantRequestAmount" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="GrantType" Relationship="Self.FK__GrantRequ__Grant__34C8D9D1" FromRole="GrantRequest" ToRole="GrantType" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__GrantRequ__Perso__35BCFE0A" FromRole="GrantRequest" ToRole="Person" />
+          <NavigationProperty Name="GrantReviews" Relationship="Self.FK__GrantRevi__Grant__37A5467C" FromRole="GrantRequest" ToRole="GrantReview" />
+        </EntityType>
+        <EntityType Name="GrantReview">
+          <Key>
+            <PropertyRef Name="GrantReviewKey" />
+          </Key>
+          <Property Name="GrantReviewKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GrantReviewDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GrantRequestKey" Type="Int32" />
+          <Property Name="GrantRequestStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GrantAllocationAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="EmployeeKey" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__GrantRevi__Emplo__36B12243" FromRole="GrantReview" ToRole="Employee" />
+          <NavigationProperty Name="GrantRequest" Relationship="Self.FK__GrantRevi__Grant__37A5467C" FromRole="GrantReview" ToRole="GrantRequest" />
+          <NavigationProperty Name="GrantReviewComments" Relationship="Self.Fk_GrantReview" FromRole="GrantReview" ToRole="GrantReviewComment" />
+        </EntityType>
+        <EntityType Name="GrantReviewComment">
+          <Key>
+            <PropertyRef Name="GrantReviewCommentKey" />
+          </Key>
+          <Property Name="GrantReviewCommentKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GrantReviewKey" Type="Int32" />
+          <Property Name="EmployeeKey" Type="Int32" />
+          <Property Name="GrantReviewCommentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GrantReviewNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__GrantRevi__Emplo__38996AB5" FromRole="GrantReviewComment" ToRole="Employee" />
+          <NavigationProperty Name="GrantReview" Relationship="Self.Fk_GrantReview" FromRole="GrantReviewComment" ToRole="GrantReview" />
+        </EntityType>
+        <EntityType Name="GrantType">
+          <Key>
+            <PropertyRef Name="GrantTypeKey" />
+          </Key>
+          <Property Name="GrantTypeKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GrantTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GrantTypeMaximum" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="GrantTypeLifetimeMaximum" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="GrantTypeDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GrantRequests" Relationship="Self.FK__GrantRequ__Grant__34C8D9D1" FromRole="GrantType" ToRole="GrantRequest" />
+        </EntityType>
+        <EntityType Name="LoginHistoryTable">
+          <Key>
+            <PropertyRef Name="LoginHistoryKey" />
+          </Key>
+          <Property Name="LoginHistoryKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonKey" Type="Int32" />
+          <Property Name="LoginTimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__LoginHist__Perso__3A81B327" FromRole="LoginHistoryTable" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonKey" />
+          </Key>
+          <Property Name="PersonKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonLastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PersonFirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PersonEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PersonPassWord" Type="Binary" MaxLength="500" FixedLength="false" />
+          <Property Name="PersonEntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PersonPassWordSeed" Type="Int32" />
+          <NavigationProperty Name="Contacts" Relationship="Self.FK__Contact__PersonK__300424B4" FromRole="Person" ToRole="Contact" />
+          <NavigationProperty Name="Donations" Relationship="Self.FK__Donation__Person__30F848ED" FromRole="Person" ToRole="Donation" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Person__31EC6D26" FromRole="Person" ToRole="Employee" />
+          <NavigationProperty Name="GrantRequests" Relationship="Self.FK__GrantRequ__Perso__35BCFE0A" FromRole="Person" ToRole="GrantRequest" />
+          <NavigationProperty Name="LoginHistoryTables" Relationship="Self.FK__LoginHist__Perso__3A81B327" FromRole="Person" ToRole="LoginHistoryTable" />
+          <NavigationProperty Name="PersonAddresses" Relationship="Self.FK__PersonAdd__Perso__3B75D760" FromRole="Person" ToRole="PersonAddress" />
+        </EntityType>
+        <EntityType Name="PersonAddress">
+          <Key>
+            <PropertyRef Name="PersonAddressKey" />
+          </Key>
+          <Property Name="PersonAddressKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonAddressApt" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PersonAddressStreet" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PersonAddressCity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PersonAddressState" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PersonAddressZip" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PersonKey" Type="Int32" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__PersonAdd__Perso__3B75D760" FromRole="PersonAddress" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="PositionKey" />
+          </Key>
+          <Property Name="PositionKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PositionName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PositionDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employees" Relationship="Self.EmployeePosition" FromRole="Position" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK__Contact__Contact__2F10007B">
+          <End Role="ContactType" Type="Self.ContactType" Multiplicity="0..1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactType">
+              <PropertyRef Name="ContactTypeKey" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="ContactTypeKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contact__PersonK__300424B4">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonKey" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="PersonKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Donation__Person__30F848ED">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Donation" Type="Self.Donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonKey" />
+            </Principal>
+            <Dependent Role="Donation">
+              <PropertyRef Name="PersonKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Person__31EC6D26">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonKey" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="PersonKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GrantRevi__Emplo__36B12243">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="GrantReview" Type="Self.GrantReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeKey" />
+            </Principal>
+            <Dependent Role="GrantReview">
+              <PropertyRef Name="EmployeeKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GrantRevi__Emplo__38996AB5">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="GrantReviewComment" Type="Self.GrantReviewComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeKey" />
+            </Principal>
+            <Dependent Role="GrantReviewComment">
+              <PropertyRef Name="EmployeeKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GrantRequ__Grant__34C8D9D1">
+          <End Role="GrantType" Type="Self.GrantType" Multiplicity="0..1" />
+          <End Role="GrantRequest" Type="Self.GrantRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrantType">
+              <PropertyRef Name="GrantTypeKey" />
+            </Principal>
+            <Dependent Role="GrantRequest">
+              <PropertyRef Name="GrantTypeKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GrantRequ__Perso__35BCFE0A">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="GrantRequest" Type="Self.GrantRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonKey" />
+            </Principal>
+            <Dependent Role="GrantRequest">
+              <PropertyRef Name="PersonKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GrantRevi__Grant__37A5467C">
+          <End Role="GrantRequest" Type="Self.GrantRequest" Multiplicity="0..1" />
+          <End Role="GrantReview" Type="Self.GrantReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrantRequest">
+              <PropertyRef Name="GrantRequestKey" />
+            </Principal>
+            <Dependent Role="GrantReview">
+              <PropertyRef Name="GrantRequestKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_GrantReview">
+          <End Role="GrantReview" Type="Self.GrantReview" Multiplicity="0..1" />
+          <End Role="GrantReviewComment" Type="Self.GrantReviewComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrantReview">
+              <PropertyRef Name="GrantReviewKey" />
+            </Principal>
+            <Dependent Role="GrantReviewComment">
+              <PropertyRef Name="GrantReviewKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LoginHist__Perso__3A81B327">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="LoginHistoryTable" Type="Self.LoginHistoryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonKey" />
+            </Principal>
+            <Dependent Role="LoginHistoryTable">
+              <PropertyRef Name="PersonKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PersonAdd__Perso__3B75D760">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="PersonAddress" Type="Self.PersonAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonKey" />
+            </Principal>
+            <Dependent Role="PersonAddress">
+              <PropertyRef Name="PersonKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EmployeePosition">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <End Role="Position" Type="Self.Position" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Community_AssistEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BusinessRules" EntityType="Self.BusinessRule" />
+          <EntitySet Name="Contacts" EntityType="Self.Contact" />
+          <EntitySet Name="ContactTypes" EntityType="Self.ContactType" />
+          <EntitySet Name="Donations" EntityType="Self.Donation" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="GrantRequests" EntityType="Self.GrantRequest" />
+          <EntitySet Name="GrantReviews" EntityType="Self.GrantReview" />
+          <EntitySet Name="GrantReviewComments" EntityType="Self.GrantReviewComment" />
+          <EntitySet Name="GrantTypes" EntityType="Self.GrantType" />
+          <EntitySet Name="LoginHistoryTables" EntityType="Self.LoginHistoryTable" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="PersonAddresses" EntityType="Self.PersonAddress" />
+          <EntitySet Name="Positions" EntityType="Self.Position" />
+          <AssociationSet Name="FK__Contact__Contact__2F10007B" Association="Self.FK__Contact__Contact__2F10007B">
+            <End Role="ContactType" EntitySet="ContactTypes" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contact__PersonK__300424B4" Association="Self.FK__Contact__PersonK__300424B4">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Donation__Person__30F848ED" Association="Self.FK__Donation__Person__30F848ED">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Donation" EntitySet="Donations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Person__31EC6D26" Association="Self.FK__Employee__Person__31EC6D26">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GrantRevi__Emplo__36B12243" Association="Self.FK__GrantRevi__Emplo__36B12243">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="GrantReview" EntitySet="GrantReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GrantRevi__Emplo__38996AB5" Association="Self.FK__GrantRevi__Emplo__38996AB5">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="GrantReviewComment" EntitySet="GrantReviewComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GrantRequ__Grant__34C8D9D1" Association="Self.FK__GrantRequ__Grant__34C8D9D1">
+            <End Role="GrantType" EntitySet="GrantTypes" />
+            <End Role="GrantRequest" EntitySet="GrantRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GrantRequ__Perso__35BCFE0A" Association="Self.FK__GrantRequ__Perso__35BCFE0A">
+            <End Role="Person" EntitySet="People" />
+            <End Role="GrantRequest" EntitySet="GrantRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GrantRevi__Grant__37A5467C" Association="Self.FK__GrantRevi__Grant__37A5467C">
+            <End Role="GrantRequest" EntitySet="GrantRequests" />
+            <End Role="GrantReview" EntitySet="GrantReviews" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_GrantReview" Association="Self.Fk_GrantReview">
+            <End Role="GrantReview" EntitySet="GrantReviews" />
+            <End Role="GrantReviewComment" EntitySet="GrantReviewComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LoginHist__Perso__3A81B327" Association="Self.FK__LoginHist__Perso__3A81B327">
+            <End Role="Person" EntitySet="People" />
+            <End Role="LoginHistoryTable" EntitySet="LoginHistoryTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PersonAdd__Perso__3B75D760" Association="Self.FK__PersonAdd__Perso__3B75D760">
+            <End Role="Person" EntitySet="People" />
+            <End Role="PersonAddress" EntitySet="PersonAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="EmployeePosition" Association="Self.EmployeePosition">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Position" EntitySet="Positions" />
+          </AssociationSet>
+          <FunctionImport Name="usp_AddRequest">
+            <Parameter Name="GrantType" Mode="In" Type="Int32" />
+            <Parameter Name="GrantRequestExplantion" Mode="In" Type="String" />
+            <Parameter Name="GrantRequestAmount" Mode="In" Type="Decimal" />
+            <Parameter Name="personKey" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Login">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Register">
+            <Parameter Name="lastname" Mode="In" Type="String" />
+            <Parameter Name="firstname" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="ApartmentNumber" Mode="In" Type="String" />
+            <Parameter Name="Street" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+            <Parameter Name="Zipcode" Mode="In" Type="String" />
+            <Parameter Name="HomePhone" Mode="In" Type="String" />
+            <Parameter Name="WorkPhone" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Community_AssistModelStoreContainer" CdmEntityContainer="Community_AssistEntities">
+          <EntitySetMapping Name="BusinessRules">
+            <EntityTypeMapping TypeName="Community_AssistModel.BusinessRule">
+              <MappingFragment StoreEntitySet="BusinessRule">
+                <ScalarProperty Name="BusinessRuleKey" ColumnName="BusinessRuleKey" />
+                <ScalarProperty Name="BusinessRuleText" ColumnName="BusinessRuleText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="Community_AssistModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="ContactKey" ColumnName="ContactKey" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="ContactTypeKey" ColumnName="ContactTypeKey" />
+                <ScalarProperty Name="PersonKey" ColumnName="PersonKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactTypes">
+            <EntityTypeMapping TypeName="Community_AssistModel.ContactType">
+              <MappingFragment StoreEntitySet="ContactType">
+                <ScalarProperty Name="ContactTypeKey" ColumnName="ContactTypeKey" />
+                <ScalarProperty Name="ContactTypeName" ColumnName="ContactTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Donations">
+            <EntityTypeMapping TypeName="Community_AssistModel.Donation">
+              <MappingFragment StoreEntitySet="Donation">
+                <ScalarProperty Name="DonationKey" ColumnName="DonationKey" />
+                <ScalarProperty Name="PersonKey" ColumnName="PersonKey" />
+                <ScalarProperty Name="DonationDate" ColumnName="DonationDate" />
+                <ScalarProperty Name="DonationAmount" ColumnName="DonationAmount" />
+                <ScalarProperty Name="DonationConfirmation" ColumnName="DonationConfirmation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="Community_AssistModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="EmployeeKey" ColumnName="EmployeeKey" />
+                <ScalarProperty Name="PersonKey" ColumnName="PersonKey" />
+                <ScalarProperty Name="EmployeeHireDate" ColumnName="EmployeeHireDate" />
+                <ScalarProperty Name="EmployeeAnnualSalary" ColumnName="EmployeeAnnualSalary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GrantRequests">
+            <EntityTypeMapping TypeName="Community_AssistModel.GrantRequest">
+              <MappingFragment StoreEntitySet="GrantRequest">
+                <ScalarProperty Name="GrantRequestKey" ColumnName="GrantRequestKey" />
+                <ScalarProperty Name="GrantRequestDate" ColumnName="GrantRequestDate" />
+                <ScalarProperty Name="PersonKey" ColumnName="PersonKey" />
+                <ScalarProperty Name="GrantTypeKey" ColumnName="GrantTypeKey" />
+                <ScalarProperty Name="GrantRequestExplanation" ColumnName="GrantRequestExplanation" />
+                <ScalarProperty Name="GrantRequestAmount" ColumnName="GrantRequestAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GrantReviews">
+            <EntityTypeMapping TypeName="Community_AssistModel.GrantReview">
+              <MappingFragment StoreEntitySet="GrantReview">
+                <ScalarProperty Name="GrantReviewKey" ColumnName="GrantReviewKey" />
+                <ScalarProperty Name="GrantReviewDate" ColumnName="GrantReviewDate" />
+                <ScalarProperty Name="GrantRequestKey" ColumnName="GrantRequestKey" />
+                <ScalarProperty Name="GrantRequestStatus" ColumnName="GrantRequestStatus" />
+                <ScalarProperty Name="GrantAllocationAmount" ColumnName="GrantAllocationAmount" />
+                <ScalarProperty Name="EmployeeKey" ColumnName="EmployeeKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GrantReviewComments">
+            <EntityTypeMapping TypeName="Community_AssistModel.GrantReviewComment">
+              <MappingFragment StoreEntitySet="GrantReviewComment">
+                <ScalarProperty Name="GrantReviewCommentKey" ColumnName="GrantReviewCommentKey" />
+                <ScalarProperty Name="GrantReviewKey" ColumnName="GrantReviewKey" />
+                <ScalarProperty Name="EmployeeKey" ColumnName="EmployeeKey" />
+                <ScalarProperty Name="GrantReviewCommentDate" ColumnName="GrantReviewCommentDate" />
+                <ScalarProperty Name="GrantReviewNote" ColumnName="GrantReviewNote" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GrantTypes">
+            <EntityTypeMapping TypeName="Community_AssistModel.GrantType">
+              <MappingFragment StoreEntitySet="GrantType">
+                <ScalarProperty Name="GrantTypeKey" ColumnName="GrantTypeKey" />
+                <ScalarProperty Name="GrantTypeName" ColumnName="GrantTypeName" />
+                <ScalarProperty Name="GrantTypeMaximum" ColumnName="GrantTypeMaximum" />
+                <ScalarProperty Name="GrantTypeLifetimeMaximum" ColumnName="GrantTypeLifetimeMaximum" />
+                <ScalarProperty Name="GrantTypeDescription" ColumnName="GrantTypeDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginHistoryTables">
+            <EntityTypeMapping TypeName="Community_AssistModel.LoginHistoryTable">
+              <MappingFragment StoreEntitySet="LoginHistoryTable">
+                <ScalarProperty Name="LoginHistoryKey" ColumnName="LoginHistoryKey" />
+                <ScalarProperty Name="PersonKey" ColumnName="PersonKey" />
+                <ScalarProperty Name="LoginTimeStamp" ColumnName="LoginTimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="Community_AssistModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="PersonKey" ColumnName="PersonKey" />
+                <ScalarProperty Name="PersonLastName" ColumnName="PersonLastName" />
+                <ScalarProperty Name="PersonFirstName" ColumnName="PersonFirstName" />
+                <ScalarProperty Name="PersonEmail" ColumnName="PersonEmail" />
+                <ScalarProperty Name="PersonPassWord" ColumnName="PersonPassWord" />
+                <ScalarProperty Name="PersonEntryDate" ColumnName="PersonEntryDate" />
+                <ScalarProperty Name="PersonPassWordSeed" ColumnName="PersonPassWordSeed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonAddresses">
+            <EntityTypeMapping TypeName="Community_AssistModel.PersonAddress">
+              <MappingFragment StoreEntitySet="PersonAddress">
+                <ScalarProperty Name="PersonAddressKey" ColumnName="PersonAddressKey" />
+                <ScalarProperty Name="PersonAddressApt" ColumnName="PersonAddressApt" />
+                <ScalarProperty Name="PersonAddressStreet" ColumnName="PersonAddressStreet" />
+                <ScalarProperty Name="PersonAddressCity" ColumnName="PersonAddressCity" />
+                <ScalarProperty Name="PersonAddressState" ColumnName="PersonAddressState" />
+                <ScalarProperty Name="PersonAddressZip" ColumnName="PersonAddressZip" />
+                <ScalarProperty Name="PersonKey" ColumnName="PersonKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="Community_AssistModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="PositionKey" ColumnName="PositionKey" />
+                <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+                <ScalarProperty Name="PositionDescription" ColumnName="PositionDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="EmployeePosition" TypeName="Community_AssistModel.EmployeePosition" StoreEntitySet="EmployeePosition">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="EmployeeKey" ColumnName="EmployeeKey" />
+            </EndProperty>
+            <EndProperty Name="Position">
+              <ScalarProperty Name="PositionKey" ColumnName="PositionKey" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="usp_AddRequest" FunctionName="Community_AssistModel.Store.usp_AddRequest" />
+          <FunctionImportMapping FunctionImportName="usp_Login" FunctionName="Community_AssistModel.Store.usp_Login" />
+          <FunctionImportMapping FunctionImportName="usp_Register" FunctionName="Community_AssistModel.Store.usp_Register" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
