@@ -28,7 +28,7 @@ public class LoginClass
 
     public int ValidateLogin()
     {
-        SqlCommand cmd = new SqlCommand();
+        SqlCommand cmd = new SqlCommand(); // Calling a stored procedure from the database. 
         cmd.Connection = connect;
         cmd.CommandType = CommandType.StoredProcedure;
         cmd.CommandText = "usp_ReviewerLogin";
@@ -37,7 +37,7 @@ public class LoginClass
 
         cmd.Parameters.AddWithValue("@ReviewerPassword", pass);
 
-        connect.Open();
+        connect.Open(); //If code breaks here, it's a problem with the connection string. 
         int result = cmd.ExecuteNonQuery();
         connect.Close();
 
