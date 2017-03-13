@@ -1,0 +1,58 @@
+﻿@model Assignment7.Models.GrantRequest
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>GrantRequest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GrantRequestDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GrantRequestDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GrantRequestExplanation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GrantRequestExplanation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GrantRequestAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GrantRequestAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GrantType.GrantTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GrantType.GrantTypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Person.PersonLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Person.PersonLastName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.GrantRequestKey }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
