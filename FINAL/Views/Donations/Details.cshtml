@@ -1,0 +1,50 @@
+﻿@model FinalProjV2.Models.Donation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Donation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DonationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonationAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonationAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonationConfirmation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonationConfirmation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Person.PersonLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Person.PersonLastName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DonationKey }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
